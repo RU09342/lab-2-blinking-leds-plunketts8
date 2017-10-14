@@ -1,10 +1,10 @@
 # Simple Blink
 Simple Blink theory and operation works across all MSP430 boards used in this lab.
 
-##Summary
+## Summary
 The Simple Blink program will... as crazy as it sounds... simply blink an LED.
 
-###Notes
+### Notes
 The main goal of this section of Lab 2 was to learn how to initialze inputs and outputs. 
 
 The code below gives an example of setting Pin 1.0, the LED, as an output.
@@ -26,5 +26,5 @@ Example:
 ```
 
 
-####Differences between boards
+#### Differences between boards
 The only signifigant difference between the MSP boards in this portion of the lab was the changing of the pin assignments. Most other functionality remained constant across each board.
