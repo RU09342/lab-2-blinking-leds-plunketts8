@@ -1,21 +1,43 @@
 # Button Blink
-Now that you have looked at blinking the LED from some built in delay, but what if we wanted to control the state of the LED by a button? You may think "Why would I need a Microcontroller to perform the job of a switch?". And that is where you come in. The bare minimum for this part of the lab is to essentially replicate a switch with your development board.
 
-# YOU NEED TO CREATE THE FOLLOWING FOLDERS
-* MSP430G2553
-* MSP430F5529
-* MSP430FR2311
-* MSP430FR5994
-* MSP430FR6989
+The goal of this lab was to write a program that would toggle the state of a LED with the push of a button.
 
-## README
-Remember to replace this README with your README once you are ready to submit. I would recommend either making a copy of this file or taking a screen shot. There might be a copy of all of these README's in a folder on the top level depending on the exercise.
+## Implementation
 
-## Extra Work
-What can we do to make this a little bit more worthy of needing a microcontroller.
+Similair to the other sections of this lab the correct pins need to be initialized as inputs and outputs. Since there is no interrupts the watchdog timer should be disabled with: 
 
-### Button Based Speed Control
-Much like the UART controlled speed, what if you could cycle between speeds based on a button press? The speed could progress through a cycle of "Off-Slow-Medium-Fast" looping back when you hit the end.
+```c
+	WDTCTL = WDTPW + WDTHOLD or WDTCTL = WDTPW | WDTHOLD
+```
 
-### Color Change
-What if upon a button press, the LED which was blinking changed. Some of the development boards contain two LEDs, so you could swap between a Red and a Green LED.
+Polling is used to check whether or not the button has been pressed. This is not the most effiecent way to check but will work well for thus aaplication. The main section of code below shows how polling utulized in a while loop.
+
+```c
+    
+
+while(1){
+
+    while(swap == 1)
+    {
+        P1OUT ^= BIT0;                      // Toggle LED
+        __delay_cycles(500000);   //Adjust speed
+        if(!(P2IN & BIT1)){
+                       swap = 0;
+                       P1OUT = ~BIT0;
+            }
+    }
+
+    while(swap == 0){
+        P4OUT ^= BIT7;                      //Toggle one of the two LED at different rate
+        __delay_cycles(100000);             //Adjust speed
+        if(!(P2IN & BIT1)){
+                               swap = 1;
+                               P4OUT = ~BIT7;
+                    }
+        }
+    }
+
+```
+
+The code above is encompassed in an infinite while loop that is constantly checking whether or not the button has been pressed. Once the button has ben pushed, the code reaches the if statment and executes the changing of the LED.
+
