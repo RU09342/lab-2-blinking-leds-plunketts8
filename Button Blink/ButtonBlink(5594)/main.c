@@ -22,8 +22,6 @@ int main(void)
     PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
                                             // to activate previously configured port settings
     int swap = 1;
-
-
     while(1){
 
     while(swap == 1)

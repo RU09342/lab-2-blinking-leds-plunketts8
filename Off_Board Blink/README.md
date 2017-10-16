@@ -9,3 +9,4 @@ The goal of the off board blink section is to learn about the capabilities of th
 ## Implementation
 The 3.3V output of an arduino was used to suppliy power to the processor when placed on the breadboard. The negative terminal of the battery is connected to the VDD pin of the G2553 and the possitive terminal to the VCC pin. According to the datasheet, the max current output at each pin was 6 mV at that voltage. Images of the wire, resistor, capacitor, chip, and led placement can be found and followed in this folder. In order to program the G2 chip, place back in the MSP board and program normally using CCS.
 
+Use the same code for the G2553 MultipleBlink.
