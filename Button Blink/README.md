@@ -41,3 +41,6 @@ while(1){
 
 The code above is encompassed in an infinite while loop that is constantly checking whether or not the button has been pressed. Once the button has ben pushed, the code reaches the if statment and executes the changing of the LED.
 
+## Extra Work
+
+Extra work for this lab was setting it so two different LEDs would toggle blinking at each button press.
